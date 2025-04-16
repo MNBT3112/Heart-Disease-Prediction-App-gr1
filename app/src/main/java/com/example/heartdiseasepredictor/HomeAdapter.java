@@ -17,20 +17,20 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.homeViewHolder
     List<String> titles;
     List<String> info;
     LayoutInflater inflater;
-//    Context cxt;
-//    int lastPosition = -1;
+    // Context cxt;
+    // int lastPosition = -1;
 
-    public HomeAdapter(Context cxt, List<String> titles, List<String> info){
+    public HomeAdapter(Context cxt, List<String> titles, List<String> info) {
         this.titles = titles;
         this.info = info;
         this.inflater = LayoutInflater.from(cxt);
-//        this.cxt = cxt;
+        // this.cxt = cxt;
     }
 
     @NonNull
     @Override
     public HomeAdapter.homeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.info_card_layout,parent,false);
+        View view = inflater.inflate(R.layout.info_card_layout, parent, false);
         return new homeViewHolder(view);
     }
 
@@ -46,7 +46,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.homeViewHolder
         return titles.size();
     }
 
-    public class homeViewHolder extends RecyclerView.ViewHolder{
+    public class homeViewHolder extends RecyclerView.ViewHolder {
 
         TextView titleView;
         TextView infoView;
