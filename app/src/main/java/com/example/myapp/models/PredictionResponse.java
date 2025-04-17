@@ -5,7 +5,6 @@ public class PredictionResponse {
     private String confidence_percentage;
     private String description;
 
-    // Getters and setters
     public String getHeartDiseasePrediction() {
         return heart_disease_prediction;
     }

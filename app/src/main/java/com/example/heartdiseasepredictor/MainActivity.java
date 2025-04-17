@@ -2,63 +2,77 @@ package com.example.heartdiseasepredictor;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-
-import com.example.myapp.models.PredictionResponse;
-import com.example.myapp.network.ApiClient;
-import com.example.myapp.network.ApiService;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView predictionTextView, confidenceTextView, descriptionTextView;
+    // Declare the UI elements
+    private EditText inputCp, inputThalach, inputSlope, inputRestecg,
+            inputChol, inputTrestbps, inputFbs, inputOldpeak;
+    private Button predictButton, tipsButton;
+    private TextView resultTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Ensure activity_main.xml exists in res/layout
+        setContentView(R.layout.activity_main); // Link to your XML
 
-        // Link UI elements
-        predictionTextView = findViewById(R.id.prediction_text);
-        confidenceTextView = findViewById(R.id.confidence_text);
-        descriptionTextView = findViewById(R.id.description_text);
+        // Bind views from the layout
+        inputCp = findViewById(R.id.input_cp);
+        inputThalach = findViewById(R.id.input_thalach);
+        inputSlope = findViewById(R.id.input_slope);
+        inputRestecg = findViewById(R.id.input_restecg);
+        inputChol = findViewById(R.id.input_chol);
+        inputTrestbps = findViewById(R.id.input_trestbps);
+        inputFbs = findViewById(R.id.input_fbs);
+        inputOldpeak = findViewById(R.id.input_oldpeak);
 
-        // Example input values for prediction (you can later gather these from user
-        // input)
-        int cp = 3;
-        int thalach = 150;
-        int slope = 0;
-        int restecg = 0;
-        float chol = 233.0f;
-        float trestbps = 145.0f;
-        int fbs = 1;
-        float oldpeak = 2.3f;
+        predictButton = findViewById(R.id.predict_button);
+        tipsButton = findViewById(R.id.tips_button);
+        resultTextView = findViewById(R.id.result_text);
 
-        // Create API service and call the backend
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        Call<PredictionResponse> call = apiService.predictHeartDisease(cp, thalach, slope, restecg, chol, trestbps, fbs,
-                oldpeak);
+        // Initially hide the TIPS button
+        tipsButton.setVisibility(View.GONE);
 
-        call.enqueue(new Callback<PredictionResponse>() {
+        // Set listener for Predict button
+        predictButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<PredictionResponse> call, Response<PredictionResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    // Update the UI with detailed response data
-                    PredictionResponse res = response.body();
-                    predictionTextView.setText("Prediction: " + res.getHeartDiseasePrediction());
-                    confidenceTextView.setText("Confidence: " + res.getConfidencePercentage());
-                    descriptionTextView.setText("Description: " + res.getDescription());
-                } else {
-                    predictionTextView.setText("API call unsuccessful");
-                }
+            public void onClick(View v) {
+
+                // (Fake code) Ignore the actual input values.
+                // For a fake demo, you can either use a static value,
+                // or generate a random percentage. We'll use a random percentage.
+                Random random = new Random();
+                // Generate a random percentage between 80 and 90 (for realism); you can adjust
+                // as needed.
+                int fakePercentage = 70 + random.nextInt(11); // 80 to 90
+
+                // Optionally, simulate two types of predictions based on a random condition
+                // Here, randomly decide if it's heart disease or no heart disease.
+                boolean hasDisease = random.nextBoolean();
+                String diseaseResult = hasDisease ? "Chances of Heart Disease" : "Chances of No Heart Disease";
+
+                // Display the fake result in the result TextView
+                String fakeResultText = fakePercentage + "% " + diseaseResult;
+                resultTextView.setText(fakeResultText);
+
+                // Make the TIPS button visible after prediction
+                tipsButton.setVisibility(View.VISIBLE);
             }
+        });
 
+        // Optional: Set listener for TIPS button
+        tipsButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFailure(Call<PredictionResponse> call, Throwable t) {
-                predictionTextView.setText("Error: " + t.getMessage());
+            public void onClick(View v) {
+
+                // For the fake demo, simply update the result view with a tip.
+                String tipText = "Tip: Exercise regularly, eat healthily, and monitor your cholesterol!";
+                resultTextView.setText(resultTextView.getText() + "\n" + tipText);
             }
         });
     }

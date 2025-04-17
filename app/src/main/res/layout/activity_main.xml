@@ -1,32 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_linear_layout"
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/prediction_text"
-        android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+  
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Prediction: "
-        android:textSize="18sp"
-        android:paddingBottom="8dp" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/confidence_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confidence: "
-        android:textSize="18sp"
-        android:paddingBottom="8dp" />
+        <!-- Input fields -->
+        <EditText
+            android:id="@+id/input_cp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Chest Pain Type"
+            android:inputType="number" />
 
-    <TextView
-        android:id="@+id/description_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Description: "
-        android:textSize="18sp"
-        android:paddingBottom="8dp" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/input_thalach"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Max Heart Rate"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/input_slope"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Exercise ST Slope"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/input_restecg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Resting ECG"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/input_chol"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cholesterol"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/input_trestbps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Resting Blood Pressure"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/input_fbs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fasting Blood Sugar"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/input_oldpeak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ST Depression"
+            android:inputType="numberDecimal" />
+
+        <!-- Predict button -->
+        <Button
+            android:id="@+id/predict_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PREDICT" />
+
+        <!-- Result display -->
+        <TextView
+            android:id="@+id/result_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prediction Result Appears Here"
+            android:textSize="18sp"
+            android:paddingTop="16dp"
+            android:textColor="#FF0000" />
+
+        <!-- Tips button, initially hidden -->
+        <Button
+            android:id="@+id/tips_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TIPS TO IMPROVE"
+            android:visibility="gone" />
+            
+    </LinearLayout>
+</ScrollView>
