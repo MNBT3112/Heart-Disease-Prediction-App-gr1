@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.heartdiseasepredictor.MainActivity;
 
 public class HomeActivity extends AppCompatActivity {
 

@@ -44,6 +44,14 @@ dependencies{
     implementation 'com.android.volley:volley:1.2.1'
 
 
+    // Retrofit library
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    // Retrofit Gson converter
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // (Optional) Add OkHttp for advanced logging and network interception
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+
    
 
 }
