@@ -2,7 +2,7 @@ package com.example.heartdiseasepredictor;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.myapp.models.PredictionResponse;
 import com.example.myapp.network.ApiClient;
@@ -14,18 +14,20 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    // onCreate is where we’ll call the prediction API.
+    private TextView predictionTextView, confidenceTextView, descriptionTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Make sure you have a valid layout; for example, activity_main.xml
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); // Ensure activity_main.xml exists in res/layout
 
-        // Create the ApiService instance from our Retrofit client.
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        // Link UI elements
+        predictionTextView = findViewById(R.id.prediction_text);
+        confidenceTextView = findViewById(R.id.confidence_text);
+        descriptionTextView = findViewById(R.id.description_text);
 
-        // Sample input values for prediction. You can replace these with values from
-        // user input.
+        // Example input values for prediction (you can later gather these from user
+        // input)
         int cp = 3;
         int thalach = 150;
         int slope = 0;
@@ -35,26 +37,28 @@ public class MainActivity extends AppCompatActivity {
         int fbs = 1;
         float oldpeak = 2.3f;
 
-        // Make the network request.
+        // Create API service and call the backend
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
         Call<PredictionResponse> call = apiService.predictHeartDisease(cp, thalach, slope, restecg, chol, trestbps, fbs,
                 oldpeak);
 
-        // Enqueue the call - this makes it asynchronous.
         call.enqueue(new Callback<PredictionResponse>() {
             @Override
             public void onResponse(Call<PredictionResponse> call, Response<PredictionResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    String prediction = response.body().getHeartDiseasePrediction();
-                    Toast.makeText(MainActivity.this, "Heart Disease Prediction: " + prediction, Toast.LENGTH_LONG)
-                            .show();
+                    // Update the UI with detailed response data
+                    PredictionResponse res = response.body();
+                    predictionTextView.setText("Prediction: " + res.getHeartDiseasePrediction());
+                    confidenceTextView.setText("Confidence: " + res.getConfidencePercentage());
+                    descriptionTextView.setText("Description: " + res.getDescription());
                 } else {
-                    Toast.makeText(MainActivity.this, "API call unsuccessful", Toast.LENGTH_LONG).show();
+                    predictionTextView.setText("API call unsuccessful");
                 }
             }
 
             @Override
             public void onFailure(Call<PredictionResponse> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Failed to call API: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                predictionTextView.setText("Error: " + t.getMessage());
             }
         });
     }
