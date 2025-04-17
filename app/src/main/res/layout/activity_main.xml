@@ -2,95 +2,253 @@
 <ScrollView 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-  
+    android:layout_height="match_parent"
+    android:background="#f0f0f0">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="24dp">
 
-        <!-- Input fields -->
-        <EditText
-            android:id="@+id/input_cp"
+        <!-- App Title -->
+        <TextView
+            android:id="@+id/app_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Chest Pain Type"
-            android:inputType="number" />
+            android:text="Cardio Guide"
+            android:textSize="28sp"
+            android:textColor="#3F51B5"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="24dp" />
 
-        <EditText
-            android:id="@+id/input_thalach"
+        <!-- Each field is arranged in a horizontal LinearLayout with an EditText and an Info icon -->
+        <!-- 1. Chest Pain Type -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Max Heart Rate"
-            android:inputType="number" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/input_cp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Chest Pain Type"
+                android:inputType="number"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text" />
+            <!-- (No info icon for this field, if not needed) -->
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/input_slope"
+        <!-- 2. Max Heart Rate -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Exercise ST Slope"
-            android:inputType="number" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/input_thalach"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Max Heart Rate"
+                android:inputType="number"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text" />
+            <ImageView
+                android:id="@+id/info2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:contentDescription="Info"
+                android:padding="8dp"/>
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/input_restecg"
+        <!-- 3. Exercise ST Slope -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Resting ECG"
-            android:inputType="number" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/input_slope"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Exercise ST Slope"
+                android:inputType="number"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text" />
+            <ImageView
+                android:id="@+id/info3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:contentDescription="Info"
+                android:padding="8dp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/input_chol"
+        <!-- 4. Resting ECG -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Cholesterol"
-            android:inputType="numberDecimal" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/input_restecg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Resting ECG"
+                android:inputType="number"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text" />
+            <ImageView
+                android:id="@+id/info4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:contentDescription="Info"
+                android:padding="8dp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/input_trestbps"
+        <!-- 5. Cholesterol -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Resting Blood Pressure"
-            android:inputType="numberDecimal" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/input_chol"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Cholesterol"
+                android:inputType="numberDecimal"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text" />
+            <ImageView
+                android:id="@+id/info5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:contentDescription="Info"
+                android:padding="8dp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/input_fbs"
+        <!-- 6. Resting Blood Pressure -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fasting Blood Sugar"
-            android:inputType="number" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/input_trestbps"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Resting Blood Pressure"
+                android:inputType="numberDecimal"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text" />
+            <ImageView
+                android:id="@+id/info6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:contentDescription="Info"
+                android:padding="8dp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/input_oldpeak"
+        <!-- 7. Fasting Blood Sugar -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ST Depression"
-            android:inputType="numberDecimal" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+            <EditText
+                android:id="@+id/input_fbs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Fasting Blood Sugar"
+                android:inputType="number"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text" />
+            <ImageView
+                android:id="@+id/info7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:contentDescription="Info"
+                android:padding="8dp" />
+        </LinearLayout>
 
-        <!-- Predict button -->
-        <Button
-            android:id="@+id/predict_button"
+        <!-- 8. ST Depression -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="24dp">
+            <EditText
+                android:id="@+id/input_oldpeak"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="ST Depression"
+                android:inputType="numberDecimal"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text" />
+            <ImageView
+                android:id="@+id/info8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:contentDescription="Info"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- ProgressBar to simulate API connectivity -->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PREDICT" />
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp" />
 
-        <!-- Result display -->
+        <!-- Predict Button -->
+        <Button
+            android:id="@+id/predict_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PREDICT"
+            android:textStyle="bold"
+            android:backgroundTint="#3F51B5"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Result Display -->
         <TextView
             android:id="@+id/result_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Prediction Result Appears Here"
             android:textSize="18sp"
-            android:paddingTop="16dp"
-            android:textColor="#FF0000" />
-
-        <!-- Tips button, initially hidden -->
-        <Button
-            android:id="@+id/tips_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TIPS TO IMPROVE"
-            android:visibility="gone" />
-            
+            android:textColor="#FF5722"
+            android:gravity="center"
+            android:padding="12dp"/>
     </LinearLayout>
 </ScrollView>
